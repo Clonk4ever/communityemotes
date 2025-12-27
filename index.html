@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Emotes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Music Player -->
+<div id="musicPlayer" class="music-player">
+  <audio id="audioPlayer"></audio>
+  <div class="music-controls">
+    <button id="playPauseBtn" class="music-btn">▶</button>
+    <button id="prevBtn" class="music-btn">⏮</button>
+    <button id="nextBtn" class="music-btn">⏭</button>
+    <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="50">
+    <a href="#" id="twitchBtn" class="social-btn" target="_blank" title="Twitch">
+      <img src="twitchicon.png" alt="Twitch" class="social-icon">
+    </a>
+    <a href="#" id="youtubeBtn" class="social-btn" target="_blank" title="YouTube">
+      <img src="youtubeicon.png" alt="YouTube" class="social-icon">
+    </a>
+  </div>
+</div>
+
+<!-- Top Right Buttons -->
+<div id="topRightButtons" class="top-right-buttons">
+  <button id="randomizeBtn" class="action-btn">Randomize</button>
+  <button id="normalBtn" class="action-btn">Normal</button>
+</div>
+
+<!-- Surprise Me Button -->
+<div id="surpriseMeContainer" class="surprise-me-container">
+  <button id="surpriseMeBtn" class="surprise-btn">Surprise Me</button>
+</div>
+
+<!-- Surprise Emote Display -->
+<div id="surpriseEmoteDisplay" class="surprise-emote-display" style="display: none;">
+  <button id="closeSurprise" class="close-surprise">×</button>
+  <div id="surpriseEmoteContent"></div>
+</div>
+
+<img src="banner.png" alt="Community Emotes" class="banner">
+
+<input
+  type="text"
+  id="search"
+  placeholder="Search emotes or tags..."
+>
+
+<div class="gallery" id="gallery">
+  <p style="color: #999;">Loading emotes...</p>
+</div>
+
+<div id="pagination" class="pagination"></div>
+
+<script src="music-player.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
