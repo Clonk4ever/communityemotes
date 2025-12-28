@@ -187,6 +187,7 @@ function showSurpriseEmote() {
   const randomEmote = originalEmotesData[randomIndex];
   const display = document.getElementById('surpriseEmoteDisplay');
   const content = document.getElementById('surpriseEmoteContent');
+  const banner = document.querySelector('.banner');
 
   let nameHtml = '';
   if (SHOW_EMOTE_NAMES) {
@@ -200,12 +201,24 @@ function showSurpriseEmote() {
   `;
 
   display.style.display = 'block';
+  
+  // Hide banner on mobile when surprise display is shown
+  if (window.innerWidth <= 900 && banner) {
+    banner.style.display = 'none';
+  }
 }
 
 function closeSurpriseEmote() {
   const display = document.getElementById('surpriseEmoteDisplay');
+  const banner = document.querySelector('.banner');
+  
   if (display) {
     display.style.display = 'none';
+  }
+  
+  // Show banner again on mobile when surprise display is closed
+  if (window.innerWidth <= 900 && banner) {
+    banner.style.display = 'block';
   }
 }
 
