@@ -392,7 +392,8 @@ h1 {
   .volume-slider {
     width: 4px;
     height: 60px;
-    -webkit-appearance: slider-vertical;
+    -webkit-appearance: slider-vertical; /* WebKit browsers */
+    appearance: slider-vertical; /* Standard property for compatibility */
     writing-mode: bt-lr;
   }
   
@@ -485,7 +486,8 @@ h1 {
   .volume-slider {
     width: 4px;
     height: 50px;
-    -webkit-appearance: slider-vertical;
+    -webkit-appearance: slider-vertical; /* WebKit browsers */
+    appearance: slider-vertical; /* Standard property for compatibility */
     writing-mode: bt-lr;
   }
   

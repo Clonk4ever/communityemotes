@@ -56,7 +56,16 @@ function loadTrack(index, autoPlay = false) {
   
   currentTrackIndex = index;
   const track = musicFiles[currentTrackIndex];
-  audioPlayer.src = `music/${track}`;
+  
+  // Check if track is already a full URL (Google Drive, etc.) or a local path
+  if (track.startsWith('http://') || track.startsWith('https://')) {
+    // It's a full URL, use it directly
+    audioPlayer.src = track;
+  } else {
+    // It's a local file, prepend music/ folder
+    audioPlayer.src = `music/${track}`;
+  }
+  
   audioPlayer.load();
   
   if (autoPlay) {
