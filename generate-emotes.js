@@ -57,6 +57,9 @@ fs.readdir(emotesFolder, (err, files) => {
 
   // Generate emotes array - keep existing entries if file still exists, add new ones
   const emotes = imageFiles.map(file => {
+    const filePath = path.join(emotesFolder, file);
+    const stats = fs.statSync(filePath);
+    
     // Check if this file already exists in the JSON
     if (existingEmotesMap.has(file)) {
       const existing = existingEmotesMap.get(file);
@@ -69,21 +72,33 @@ fs.readdir(emotesFolder, (err, files) => {
         return {
           name: parsed.name,
           file: file,
-          tags: parsed.tags
+          tags: parsed.tags,
+          addedDate: stats.mtime.getTime() // Add modification date
         };
       }
       
-      // Keep the existing entry (preserves name and tags)
-      return existing;
+      // Keep the existing entry but update the date if not present
+      return {
+        ...existing,
+        addedDate: existing.addedDate || stats.mtime.getTime()
+      };
     } else {
       // New file - parse name and tags from filename
       const parsed = parseTagsFromName(file);
       return {
         name: parsed.name,
         file: file,
-        tags: parsed.tags
+        tags: parsed.tags,
+        addedDate: stats.mtime.getTime() // Add modification date
       };
     }
+  });
+
+  // Sort by date added (newest first)
+  emotes.sort((a, b) => {
+    const dateA = a.addedDate || 0;
+    const dateB = b.addedDate || 0;
+    return dateB - dateA; // Newest first
   });
 
   // Write to emotes.json
