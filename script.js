@@ -187,6 +187,53 @@ function closeSurpriseEmote() {
   document.getElementById('surpriseEmoteDisplay').style.display = 'none';
 }
 
+// Mobile scroll hide/show functionality
+let lastScrollTop = 0;
+let isScrolling = false;
+
+function handleMobileScroll() {
+  // Only apply on mobile devices
+  if (window.innerWidth > 900) return;
+  
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const musicPlayer = document.getElementById('musicPlayer');
+  const topRightButtons = document.getElementById('topRightButtons');
+  const surpriseMeContainer = document.getElementById('surpriseMeContainer');
+  
+  if (!musicPlayer || !topRightButtons || !surpriseMeContainer) return;
+  
+  // Show when at top or scrolling up, hide when scrolling down
+  if (scrollTop <= 50) {
+    // At top - always show
+    musicPlayer.classList.remove('hidden');
+    topRightButtons.classList.remove('hidden');
+    surpriseMeContainer.classList.remove('hidden');
+  } else if (scrollTop > lastScrollTop && scrollTop > 100) {
+    // Scrolling down - hide
+    musicPlayer.classList.add('hidden');
+    topRightButtons.classList.add('hidden');
+    surpriseMeContainer.classList.add('hidden');
+  } else if (scrollTop < lastScrollTop) {
+    // Scrolling up - show
+    musicPlayer.classList.remove('hidden');
+    topRightButtons.classList.remove('hidden');
+    surpriseMeContainer.classList.remove('hidden');
+  }
+  
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+}
+
+// Throttle scroll events for better performance
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+  if (!scrollTimeout) {
+    scrollTimeout = setTimeout(() => {
+      handleMobileScroll();
+      scrollTimeout = null;
+    }, 10);
+  }
+}, { passive: true });
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
   // Randomize button
