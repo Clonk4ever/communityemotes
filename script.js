@@ -7,7 +7,7 @@ let isOldestMode = false;
 
 // Get emotes per page based on screen size
 function getEmotesPerPage() {
-  return window.innerWidth <= 900 ? 58 : 256;
+  return window.innerWidth <= 900 ? 57 : 256;
 }
 
 // Toggle for showing emote names (change to false to hide names)

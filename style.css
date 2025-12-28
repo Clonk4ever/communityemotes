@@ -661,8 +661,7 @@ h1 {
   }
   
   .surprise-emote-display::after {
-    bottom: 50px;
-    width: 60px;
+    display: none;
   }
   
   .banner-wrapper .banner {
@@ -846,6 +845,10 @@ h1 {
     box-sizing: border-box;
     margin-top: -70px;
     margin-bottom: -35px;
+  }
+
+  .surprise-emote-display::after {
+    display: none;
   }
 
   /* Reserve space so nothing moves when banner/display switches */
