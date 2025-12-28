@@ -351,6 +351,174 @@ h1 {
   justify-content: center;
 }
 
+/* Mobile Responsive Styles */
+@media (max-width: 1200px) {
+  .gallery {
+    grid-template-columns: repeat(6, 140px);
+  }
+}
+
+@media (max-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(4, 140px);
+    gap: 20px;
+  }
+  
+  .music-player {
+    top: 10px;
+    left: 10px;
+    padding: 6px 10px;
+    min-width: 180px;
+  }
+  
+  .top-right-buttons {
+    top: 10px;
+    right: 10px;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .action-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .surprise-me-container {
+    top: 10px;
+    left: 50%;
+  }
+  
+  .surprise-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .surprise-emote-display {
+    top: 50px;
+    left: 50%;
+    padding: 12px;
+    max-width: 250px;
+  }
+  
+  #surpriseEmoteContent img {
+    max-width: 60px;
+    max-height: 60px;
+  }
+  
+  .surprise-emote-display::after {
+    top: 72px;
+    width: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery {
+    grid-template-columns: repeat(3, 100px);
+    gap: 15px;
+  }
+  
+  .emote img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .emote::after {
+    top: 60px;
+    width: 60px;
+  }
+  
+  .emote button {
+    padding: 4px 12px;
+    font-size: 11px;
+  }
+  
+  .music-player {
+    min-width: 160px;
+    padding: 5px 8px;
+  }
+  
+  .music-btn {
+    min-width: 20px;
+    height: 20px;
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+  
+  .volume-slider {
+    width: 40px;
+  }
+  
+  .social-btn {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .social-icon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .banner {
+    max-width: 200px;
+    margin-top: -30px;
+    margin-bottom: -35px;
+  }
+  
+  #search {
+    width: 90%;
+    padding: 10px;
+    font-size: 13px;
+  }
+  
+  .surprise-me-container {
+    top: 5px;
+  }
+  
+  .top-right-buttons {
+    top: 5px;
+    right: 5px;
+  }
+  
+  .action-btn {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+  
+  .surprise-emote-display {
+    top: 45px;
+    padding: 10px;
+    max-width: 200px;
+  }
+  
+  .pagination {
+    gap: 5px;
+    margin: 20px 0;
+  }
+  
+  .pagination-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+    min-width: 35px;
+  }
+}
+
+@media (max-width: 400px) {
+  .gallery {
+    grid-template-columns: repeat(2, 90px);
+    gap: 12px;
+  }
+  
+  .emote img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .emote::after {
+    top: 50px;
+    width: 50px;
+  }
+}
+
 /* .emote {
   background: #18181b;
   padding: 1px;
