@@ -375,7 +375,7 @@ body {
   width: auto;
   height: auto;
   border-radius: 6px;
-  background: #0e0e10;
+  /* background: #0e0e10; */
   transition: transform 0.2s;
 }
 
