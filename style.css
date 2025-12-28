@@ -61,15 +61,59 @@ body {
   display: none;
 }
 
+.volume-slider-wrapper {
+  position: relative;
+  width: 90px;
+  height: 4px;
+  background: #0e0e10;
+  border-radius: 2px;
+}
+
+.volume-slider-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 4px;
+  width: var(--volume-percent, 50%);
+  background: #538139;
+  border-radius: 2px;
+  z-index: 1;
+}
+
 .volume-slider {
-  width: 60px;
+  width: 90px;
   height: 4px;
   -webkit-appearance: none;
   appearance: none;
-  background: #0e0e10;
+  background: transparent;
   border-radius: 2px;
   outline: none;
   margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.music-player-emote {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-left: 4px;
+}
+
+.volume-slider::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.volume-slider::-moz-range-track {
+  background: transparent;
+  height: 4px;
+  border-radius: 2px;
 }
 
 .volume-slider::-webkit-slider-thumb {
@@ -80,6 +124,8 @@ body {
   background: #538139;
   border-radius: 50%;
   cursor: pointer;
+  position: relative;
+  margin-top: -4px;
 }
 
 .volume-slider::-moz-range-thumb {
@@ -89,6 +135,13 @@ body {
   border-radius: 50%;
   cursor: pointer;
   border: none;
+}
+
+/* Progress fill for Firefox */
+.volume-slider::-moz-range-progress {
+  background: #538139;
+  height: 4px;
+  border-radius: 2px;
 }
 
 .social-btn {
@@ -121,14 +174,50 @@ body {
   object-fit: contain;
 }
 
-/* Top Right Buttons */
-.top-right-buttons {
+/* Top Right Social Icons */
+.top-right-social {
   position: absolute;
   top: 0;
   right: 0;
   display: flex;
   gap: 8px;
   z-index: 1000;
+  align-items: center;
+}
+
+
+.top-right-social .social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #18181b;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+#twitchBtn {
+  background: #9146ff;
+}
+
+#twitchBtn:hover {
+  background: #7c3aed;
+}
+
+#youtubeBtn {
+  background: #ff0000;
+}
+
+#youtubeBtn:hover {
+  background: #cc0000;
+}
+
+.top-right-social .social-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .action-btn {
@@ -148,12 +237,31 @@ body {
   background: #538139;
 }
 
+/* Search Container with Buttons */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.search-left-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.search-right-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 /* Surprise Me Container */
 .surprise-me-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   z-index: 1000;
 }
 
@@ -177,9 +285,10 @@ body {
 /* Surprise Emote Display */
 .surprise-emote-display {
   position: absolute;
-  top: 45px;
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
+  margin-bottom: 8px;
   background: #18181b;
   border: 2px solid #538139;
   border-radius: 8px;
@@ -194,7 +303,7 @@ body {
 .surprise-emote-display::after {
   content: '';
   position: absolute;
-  top: 92px;
+  bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
   width: 77px;
@@ -323,7 +432,7 @@ h1 {
   max-width: 250px;
   width: 90%;
   height: auto;
-  margin-top: -50px;
+  margin-top: -120px;
   margin-bottom: -55px;
   display: block;
   margin-left: auto;
@@ -336,11 +445,11 @@ h1 {
   max-width: 90%;
   border-radius: 8px;
   border: 2px solid #18181b;
-  margin-bottom: 20px;
   background: #18181b;
   color: white;
   font-size: 14px;
   transition: border-color 0.2s;
+  flex: 0 0 auto;
 }
 
 #search:focus {
@@ -389,6 +498,24 @@ h1 {
     align-items: center;
   }
   
+  .volume-slider-wrapper {
+    width: 4px;
+    height: 60px;
+    position: relative;
+  }
+
+  .volume-slider-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    height: calc(var(--volume-percent, 50%) * 60px / 100);
+    background: #538139;
+    border-radius: 2px;
+    z-index: 1;
+  }
+
   .volume-slider {
     width: 4px;
     height: 60px;
@@ -397,19 +524,62 @@ h1 {
     writing-mode: bt-lr;
   }
   
-  .top-right-buttons {
-    flex-direction: column;
+  .top-right-social {
     gap: 5px;
   }
-  
+
+  .top-right-emote {
+    width: 35px;
+    height: 35px;
+  }
+
+  .top-right-social .social-btn {
+    width: 35px;
+    height: 35px;
+  }
+
+  .top-right-social .social-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .search-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 80px;
+  }
+
+  .search-left-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex: 0 1 auto;
+  }
+
+  .search-right-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex: 0 1 auto;
+  }
+
+  #search {
+    width: 100%;
+    order: 999;
+  }
+
   .action-btn {
     padding: 6px 10px;
     font-size: 12px;
   }
-  
+
   .surprise-me-container {
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
   }
   
   .surprise-btn {
@@ -418,8 +588,10 @@ h1 {
   }
   
   .surprise-emote-display {
-    top: 50px;
+    bottom: 100%;
     left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
     padding: 12px;
     max-width: 250px;
   }
@@ -430,12 +602,12 @@ h1 {
   }
   
   .surprise-emote-display::after {
-    top: 72px;
+    bottom: 50px;
     width: 60px;
   }
   
   .banner {
-    margin-top: 0 !important;
+    margin-top: -80px !important;
     margin-bottom: -35px;
   }
 }
@@ -483,6 +655,24 @@ h1 {
     padding: 2px 6px;
   }
   
+  .volume-slider-wrapper {
+    width: 4px;
+    height: 50px;
+    position: relative;
+  }
+
+  .volume-slider-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    height: calc(var(--volume-percent, 50%) * 50px / 100);
+    background: #538139;
+    border-radius: 2px;
+    z-index: 1;
+  }
+
   .volume-slider {
     width: 4px;
     height: 50px;
@@ -491,29 +681,58 @@ h1 {
     writing-mode: bt-lr;
   }
   
-  .social-btn {
-    width: 18px;
-    height: 18px;
+  .top-right-emote {
+    width: 30px;
+    height: 30px;
   }
-  
-  .social-icon {
-    width: 10px;
-    height: 10px;
+
+  .top-right-social .social-btn {
+    width: 30px;
+    height: 30px;
   }
-  
-  .top-right-buttons {
-    flex-direction: column;
-    gap: 4px;
+
+  .top-right-social .social-icon {
+    width: 16px;
+    height: 16px;
   }
-  
+
+  .search-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 9px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .search-left-buttons {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex: 0 1 auto;
+  }
+
+  .search-right-buttons {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex: 0 1 auto;
+  }
+
+  #search {
+    width: 100%;
+    order: 999;
+  }
+
   .action-btn {
     padding: 5px 8px;
     font-size: 10px;
   }
-  
+
   .surprise-me-container {
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
   }
   
   .surprise-btn {
@@ -522,15 +741,17 @@ h1 {
   }
   
   .surprise-emote-display {
-    top: 45px;
+    bottom: 100%;
     left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
     padding: 10px;
     max-width: 200px;
   }
   
   .banner {
     max-width: 200px;
-    margin-top: 0 !important;
+    margin-top: -80px !important;
     margin-bottom: -35px;
   }
   
@@ -538,7 +759,6 @@ h1 {
     width: 90%;
     padding: 10px;
     font-size: 13px;
-    margin-top: 20px;
   }
   
   .pagination {
@@ -570,7 +790,7 @@ h1 {
   }
   
   .banner {
-    margin-top: 0 !important;
+    margin-top: -80px !important;
     margin-bottom: -35px;
   }
 }

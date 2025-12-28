@@ -3,6 +3,8 @@ let originalEmotesData = [];
 let currentPage = 1;
 const emotesPerPage = 256;
 let isRandomized = false;
+let isLatestMode = false;
+let isOldestMode = false;
 
 // Toggle for showing emote names (change to false to hide names)
 const SHOW_EMOTE_NAMES = false;
@@ -151,9 +153,26 @@ function randomizeEmotes() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function restoreNormal() {
+// Latest functionality - show newest emotes first
+function showLatestEmotes() {
+  // Sort by addedDate (newest first) - emotes.json is already sorted by date
   emotesData = [...originalEmotesData];
+  isLatestMode = true;
   isRandomized = false;
+  isOldestMode = false;
+  currentPage = 1;
+  renderEmotes(emotesData);
+  updatePagination();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Oldest functionality - show oldest emotes first
+function showOldestEmotes() {
+  // Reverse the array to show oldest first
+  emotesData = [...originalEmotesData].reverse();
+  isOldestMode = true;
+  isRandomized = false;
+  isLatestMode = false;
   currentPage = 1;
   renderEmotes(emotesData);
   updatePagination();
@@ -200,10 +219,16 @@ document.addEventListener('DOMContentLoaded', () => {
     randomizeBtn.addEventListener('click', randomizeEmotes);
   }
 
-  // Normal button
-  const normalBtn = document.getElementById('normalBtn');
-  if (normalBtn) {
-    normalBtn.addEventListener('click', restoreNormal);
+  // Latest button
+  const latestBtn = document.getElementById('latestBtn');
+  if (latestBtn) {
+    latestBtn.addEventListener('click', showLatestEmotes);
+  }
+
+  // Oldest button
+  const oldestBtn = document.getElementById('oldestBtn');
+  if (oldestBtn) {
+    oldestBtn.addEventListener('click', showOldestEmotes);
   }
 
   // Surprise Me button
@@ -242,6 +267,10 @@ if (searchInput) {
       emotesData = [...originalEmotesData];
       if (isRandomized) {
         randomizeEmotes();
+      } else if (isLatestMode) {
+        showLatestEmotes();
+      } else if (isOldestMode) {
+        showOldestEmotes();
       } else {
         currentPage = 1;
         renderEmotes(emotesData);

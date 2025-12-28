@@ -19,8 +19,20 @@ function initMusicPlayer() {
   prevBtn.addEventListener('click', playPrevious);
   nextBtn.addEventListener('click', playNext);
   volumeSlider.addEventListener('input', (e) => {
-    audioPlayer.volume = e.target.value / 100;
+    const value = e.target.value;
+    audioPlayer.volume = value / 100;
+    // Update the green line behind the thumb
+    const wrapper = e.target.closest('.volume-slider-wrapper');
+    if (wrapper) {
+      wrapper.style.setProperty('--volume-percent', `${value}%`);
+    }
   });
+  
+  // Set initial volume line
+  const wrapper = volumeSlider.closest('.volume-slider-wrapper');
+  if (wrapper) {
+    wrapper.style.setProperty('--volume-percent', `${volumeSlider.value}%`);
+  }
 
   audioPlayer.addEventListener('ended', () => {
     // Auto-advance to next track when current track ends
