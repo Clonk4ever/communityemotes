@@ -374,7 +374,7 @@ h1 {
   .top-right-buttons {
     top: 10px;
     right: 10px;
-    flex-direction: column;
+    flex-direction: row;
     gap: 5px;
   }
   
@@ -386,6 +386,8 @@ h1 {
   .surprise-me-container {
     top: 10px;
     left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
   }
   
   .surprise-btn {
@@ -394,7 +396,7 @@ h1 {
   }
   
   .surprise-emote-display {
-    top: 50px;
+    top: 55px;
     left: 50%;
     padding: 12px;
     max-width: 250px;
@@ -408,6 +410,11 @@ h1 {
   .surprise-emote-display::after {
     top: 72px;
     width: 60px;
+  }
+  
+  .banner {
+    margin-top: 60px !important;
+    margin-bottom: -35px;
   }
 }
 
@@ -433,7 +440,9 @@ h1 {
   }
   
   .music-player {
-    min-width: 160px;
+    top: 8px;
+    left: 8px;
+    min-width: 140px;
     padding: 5px 8px;
   }
   
@@ -445,22 +454,53 @@ h1 {
   }
   
   .volume-slider {
-    width: 40px;
+    width: 30px;
   }
   
   .social-btn {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
   
   .social-icon {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
+  }
+  
+  .top-right-buttons {
+    top: 8px;
+    right: 8px;
+    flex-direction: row;
+    gap: 4px;
+  }
+  
+  .action-btn {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+  
+  .surprise-me-container {
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+  }
+  
+  .surprise-btn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+  
+  .surprise-emote-display {
+    top: 50px;
+    left: 50%;
+    padding: 10px;
+    max-width: 200px;
   }
   
   .banner {
     max-width: 200px;
-    margin-top: -30px;
+    margin-top: 55px !important;
     margin-bottom: -35px;
   }
   
@@ -468,26 +508,7 @@ h1 {
     width: 90%;
     padding: 10px;
     font-size: 13px;
-  }
-  
-  .surprise-me-container {
-    top: 5px;
-  }
-  
-  .top-right-buttons {
-    top: 5px;
-    right: 5px;
-  }
-  
-  .action-btn {
-    padding: 5px 8px;
-    font-size: 11px;
-  }
-  
-  .surprise-emote-display {
-    top: 45px;
-    padding: 10px;
-    max-width: 200px;
+    margin-top: 20px;
   }
   
   .pagination {
@@ -516,6 +537,11 @@ h1 {
   .emote::after {
     top: 50px;
     width: 50px;
+  }
+  
+  .banner {
+    margin-top: 50px !important;
+    margin-bottom: -35px;
   }
 }
 
