@@ -181,69 +181,16 @@ function showSurpriseEmote() {
   `;
 
   display.style.display = 'block';
-  wasSurpriseDisplayVisible = true;
 }
 
 function closeSurpriseEmote() {
   const display = document.getElementById('surpriseEmoteDisplay');
   if (display) {
     display.style.display = 'none';
-    wasSurpriseDisplayVisible = false;
   }
 }
 
-// Mobile scroll hide/show functionality
-let lastScrollTop = 0;
-let wasSurpriseDisplayVisible = false;
-
-function handleMobileScroll() {
-  // Only apply on mobile devices
-  if (window.innerWidth > 900) return;
-  
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const musicPlayer = document.getElementById('musicPlayer');
-  const topRightButtons = document.getElementById('topRightButtons');
-  const surpriseMeContainer = document.getElementById('surpriseMeContainer');
-  const surpriseEmoteDisplay = document.getElementById('surpriseEmoteDisplay');
-  
-  if (!musicPlayer || !topRightButtons || !surpriseMeContainer) return;
-  
-  // Show only when at the top (within 30px), hide when scrolled down
-  if (scrollTop <= 30) {
-    // At top - always show buttons
-    musicPlayer.classList.remove('hidden');
-    topRightButtons.classList.remove('hidden');
-    surpriseMeContainer.classList.remove('hidden');
-    
-    // Restore surprise display if it was visible before hiding
-    if (surpriseEmoteDisplay && wasSurpriseDisplayVisible) {
-      surpriseEmoteDisplay.style.display = 'block';
-    }
-  } else {
-    // Scrolled down - save state and hide everything
-    if (surpriseEmoteDisplay && surpriseEmoteDisplay.style.display === 'block') {
-      wasSurpriseDisplayVisible = true;
-      surpriseEmoteDisplay.style.display = 'none';
-    }
-    
-    musicPlayer.classList.add('hidden');
-    topRightButtons.classList.add('hidden');
-    surpriseMeContainer.classList.add('hidden');
-  }
-  
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-}
-
-// Throttle scroll events for better performance
-let scrollTimeout;
-window.addEventListener('scroll', () => {
-  if (!scrollTimeout) {
-    scrollTimeout = setTimeout(() => {
-      handleMobileScroll();
-      scrollTimeout = null;
-    }, 10);
-  }
-}, { passive: true });
+// Removed scroll hide/show functionality - buttons now stay fixed at top
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {

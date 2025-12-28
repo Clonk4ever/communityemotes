@@ -8,38 +8,40 @@
 </head>
 <body>
 
-<!-- Music Player -->
-<div id="musicPlayer" class="music-player">
-  <audio id="audioPlayer"></audio>
-  <div class="music-controls">
-    <button id="playPauseBtn" class="music-btn">▶</button>
-    <button id="prevBtn" class="music-btn">⏮</button>
-    <button id="nextBtn" class="music-btn">⏭</button>
-    <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="50">
-    <a href="#" id="twitchBtn" class="social-btn" target="_blank" title="Twitch">
-      <img src="twitchicon.png" alt="Twitch" class="social-icon">
-    </a>
-    <a href="#" id="youtubeBtn" class="social-btn" target="_blank" title="YouTube">
-      <img src="youtubeicon.png" alt="YouTube" class="social-icon">
-    </a>
+<div class="top-controls">
+  <!-- Music Player -->
+  <div id="musicPlayer" class="music-player">
+    <audio id="audioPlayer"></audio>
+    <div class="music-controls">
+      <button id="playPauseBtn" class="music-btn">▶</button>
+      <button id="prevBtn" class="music-btn">⏮</button>
+      <button id="nextBtn" class="music-btn">⏭</button>
+      <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="50">
+      <a href="#" id="twitchBtn" class="social-btn" target="_blank" title="Twitch">
+        <img src="twitchicon.png" alt="Twitch" class="social-icon">
+      </a>
+      <a href="#" id="youtubeBtn" class="social-btn" target="_blank" title="YouTube">
+        <img src="youtubeicon.png" alt="YouTube" class="social-icon">
+      </a>
+    </div>
   </div>
-</div>
 
-<!-- Top Right Buttons -->
-<div id="topRightButtons" class="top-right-buttons">
-  <button id="randomizeBtn" class="action-btn">Randomize</button>
-  <button id="normalBtn" class="action-btn">Normal</button>
-</div>
+  <!-- Top Right Buttons -->
+  <div id="topRightButtons" class="top-right-buttons">
+    <button id="randomizeBtn" class="action-btn">Randomize</button>
+    <button id="normalBtn" class="action-btn">Normal</button>
+  </div>
 
-<!-- Surprise Me Button -->
-<div id="surpriseMeContainer" class="surprise-me-container">
-  <button id="surpriseMeBtn" class="surprise-btn">Surprise Me</button>
-</div>
+  <!-- Surprise Me Button -->
+  <div id="surpriseMeContainer" class="surprise-me-container">
+    <button id="surpriseMeBtn" class="surprise-btn">Surprise Me</button>
+  </div>
 
-<!-- Surprise Emote Display -->
-<div id="surpriseEmoteDisplay" class="surprise-emote-display" style="display: none;">
-  <button id="closeSurprise" class="close-surprise">×</button>
-  <div id="surpriseEmoteContent"></div>
+  <!-- Surprise Emote Display -->
+  <div id="surpriseEmoteDisplay" class="surprise-emote-display" style="display: none;">
+    <button id="closeSurprise" class="close-surprise">×</button>
+    <div id="surpriseEmoteContent"></div>
+  </div>
 </div>
 
 <img src="banner.png" alt="Community Emotes" class="banner">
