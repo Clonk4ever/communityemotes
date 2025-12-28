@@ -1,10 +1,14 @@
 let emotesData = [];
 let originalEmotesData = [];
 let currentPage = 1;
-const emotesPerPage = 256;
 let isRandomized = false;
 let isLatestMode = false;
 let isOldestMode = false;
+
+// Get emotes per page based on screen size
+function getEmotesPerPage() {
+  return window.innerWidth <= 900 ? 58 : 256;
+}
 
 // Toggle for showing emote names (change to false to hide names)
 const SHOW_EMOTE_NAMES = false;
@@ -43,6 +47,7 @@ function renderEmotes(list) {
   }
 
   // Calculate pagination
+  const emotesPerPage = getEmotesPerPage();
   const startIndex = (currentPage - 1) * emotesPerPage;
   const endIndex = startIndex + emotesPerPage;
   const pageEmotes = list.slice(startIndex, endIndex);
@@ -84,6 +89,12 @@ function downloadEmote(file, name) {
 }
 
 function setupPagination() {
+  // Reset to page 1 if current page is beyond available pages after resize
+  const emotesPerPage = getEmotesPerPage();
+  const totalPages = Math.ceil(emotesData.length / emotesPerPage);
+  if (currentPage > totalPages && totalPages > 0) {
+    currentPage = 1;
+  }
   updatePagination();
 }
 
@@ -91,6 +102,7 @@ function updatePagination() {
   const paginationContainer = document.getElementById('pagination');
   if (!paginationContainer) return;
 
+  const emotesPerPage = getEmotesPerPage();
   const totalPages = Math.ceil(emotesData.length / emotesPerPage);
   paginationContainer.innerHTML = '';
 
@@ -200,25 +212,37 @@ function showSurpriseEmote() {
     <button class="surprise-download-btn" onclick="downloadEmote('${randomEmote.file}', '${randomEmote.name}')">Download</button>
   `;
 
-  display.style.display = 'block';
-  
-  // Hide banner on mobile when surprise display is shown
-  if (window.innerWidth <= 900 && banner) {
-    banner.style.display = 'none';
+  // On mobile, move display to banner-wrapper and hide banner
+  if (window.innerWidth <= 900) {
+    const bannerWrapper = document.querySelector('.banner-wrapper');
+    if (bannerWrapper) {
+      bannerWrapper.appendChild(display);
+    }
+    if (banner) {
+      banner.style.visibility = 'hidden';
+    }
   }
+  
+  display.style.display = 'block';
 }
 
 function closeSurpriseEmote() {
   const display = document.getElementById('surpriseEmoteDisplay');
   const banner = document.querySelector('.banner');
+  const surpriseContainer = document.getElementById('surpriseMeContainer');
   
   if (display) {
     display.style.display = 'none';
+    
+    // On mobile, move display back to original container
+    if (window.innerWidth <= 900 && surpriseContainer) {
+      surpriseContainer.appendChild(display);
+    }
   }
   
   // Show banner again on mobile when surprise display is closed
   if (window.innerWidth <= 900 && banner) {
-    banner.style.display = 'block';
+    banner.style.visibility = 'visible';
   }
 }
 
@@ -302,4 +326,15 @@ if (searchInput) {
     renderEmotes(filtered);
     setupPagination();
   });
+
+// Handle window resize to recalculate pagination when switching between mobile/desktop
+window.addEventListener('resize', () => {
+  const emotesPerPage = getEmotesPerPage();
+  const totalPages = Math.ceil(emotesData.length / emotesPerPage);
+  if (currentPage > totalPages && totalPages > 0) {
+    currentPage = 1;
+  }
+  renderEmotes(emotesData);
+  updatePagination();
+});
 }
