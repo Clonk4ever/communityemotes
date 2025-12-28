@@ -2,6 +2,8 @@ name: Generate Emotes JSON
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'emotes/**'  # Trigger when files in emotes folder change
       - 'generate-emotes.js'  # Also trigger if the script itself changes
