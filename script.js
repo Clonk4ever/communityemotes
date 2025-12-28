@@ -181,15 +181,20 @@ function showSurpriseEmote() {
   `;
 
   display.style.display = 'block';
+  wasSurpriseDisplayVisible = true;
 }
 
 function closeSurpriseEmote() {
-  document.getElementById('surpriseEmoteDisplay').style.display = 'none';
+  const display = document.getElementById('surpriseEmoteDisplay');
+  if (display) {
+    display.style.display = 'none';
+    wasSurpriseDisplayVisible = false;
+  }
 }
 
 // Mobile scroll hide/show functionality
 let lastScrollTop = 0;
-let isScrolling = false;
+let wasSurpriseDisplayVisible = false;
 
 function handleMobileScroll() {
   // Only apply on mobile devices
@@ -199,25 +204,31 @@ function handleMobileScroll() {
   const musicPlayer = document.getElementById('musicPlayer');
   const topRightButtons = document.getElementById('topRightButtons');
   const surpriseMeContainer = document.getElementById('surpriseMeContainer');
+  const surpriseEmoteDisplay = document.getElementById('surpriseEmoteDisplay');
   
   if (!musicPlayer || !topRightButtons || !surpriseMeContainer) return;
   
-  // Show when at top or scrolling up, hide when scrolling down
-  if (scrollTop <= 50) {
-    // At top - always show
+  // Show only when at the top (within 30px), hide when scrolled down
+  if (scrollTop <= 30) {
+    // At top - always show buttons
     musicPlayer.classList.remove('hidden');
     topRightButtons.classList.remove('hidden');
     surpriseMeContainer.classList.remove('hidden');
-  } else if (scrollTop > lastScrollTop && scrollTop > 100) {
-    // Scrolling down - hide
+    
+    // Restore surprise display if it was visible before hiding
+    if (surpriseEmoteDisplay && wasSurpriseDisplayVisible) {
+      surpriseEmoteDisplay.style.display = 'block';
+    }
+  } else {
+    // Scrolled down - save state and hide everything
+    if (surpriseEmoteDisplay && surpriseEmoteDisplay.style.display === 'block') {
+      wasSurpriseDisplayVisible = true;
+      surpriseEmoteDisplay.style.display = 'none';
+    }
+    
     musicPlayer.classList.add('hidden');
     topRightButtons.classList.add('hidden');
     surpriseMeContainer.classList.add('hidden');
-  } else if (scrollTop < lastScrollTop) {
-    // Scrolling up - show
-    musicPlayer.classList.remove('hidden');
-    topRightButtons.classList.remove('hidden');
-    surpriseMeContainer.classList.remove('hidden');
   }
   
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
