@@ -21,6 +21,23 @@ jobs:
         with:
           fetch-depth: 0  # Fetch full history for git operations
       
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          # Verify git is working and history is available
+          echo "Git log test (last 5 commits):"
+          git log --oneline -5 || echo "Git log failed"
+          echo ""
+          echo "Testing git log for a sample emote file:"
+          if [ -f "emotes/spacesuitnamalsk.png" ]; then
+            echo "File exists, testing git log:"
+            git log --follow --reverse --format="%ct %s" --diff-filter=A -1 -- "emotes/spacesuitnamalsk.png" || echo "Git log for file failed"
+          else
+            echo "Sample file not found, listing emotes folder:"
+            ls -la emotes/ | head -5
+          fi
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -41,8 +58,6 @@ jobs:
       - name: Commit and push changes
         if: steps.verify-changed-files.outputs.changed == 'true'
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           git add emotes.json
           git commit -m "Auto-update emotes.json from emotes folder [skip ci]"
           git push
