@@ -1,5 +1,13 @@
 [
   {
+    "name": "patrick",
+    "file": "patrick(dance).gif",
+    "tags": [
+      "dance"
+    ],
+    "addedDate": 1767018443206
+  },
+  {
     "name": "peepostareeeys",
     "file": "peepostareeeys.gif",
     "tags": [],
@@ -526,12 +534,6 @@
     "addedDate": 1709005650448
   },
   {
-    "name": "nbc boots112a",
-    "file": "nbc boots112a.png",
-    "tags": [],
-    "addedDate": 1708275013339
-  },
-  {
     "name": "happyconfetti112",
     "file": "happyconfetti112.gif",
     "tags": [],
@@ -560,12 +562,6 @@
     "file": "dancing.gif",
     "tags": [],
     "addedDate": 1704769169134
-  },
-  {
-    "name": "nbc boots112",
-    "file": "nbc boots112.png",
-    "tags": [],
-    "addedDate": 1702692562675
   },
   {
     "name": "cwalkdog112A",
