@@ -11,21 +11,43 @@ function getFileDate(filePath, relativePath) {
   try {
     // Try to get the first commit date for this file using git log
     // --follow: follow renames
+    // --reverse: show oldest commits first
     // --format=%ct: output commit timestamp
     // --diff-filter=A: only show commits that added the file
-    // -1: only the first (oldest) commit
-    const gitCommand = `git log --follow --format=%ct --diff-filter=A -1 -- "${relativePath}"`;
-    const timestamp = execSync(gitCommand, { 
+    // Then take the first line (oldest commit)
+    const gitCommand = `git log --follow --reverse --format=%ct --diff-filter=A -- "${relativePath}"`;
+    const result = execSync(gitCommand, { 
       encoding: 'utf8',
       cwd: __dirname,
-      stdio: ['ignore', 'pipe', 'ignore']
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 5000 // 5 second timeout
     }).trim();
     
-    if (timestamp) {
-      return parseInt(timestamp) * 1000; // Convert to milliseconds
+    if (result) {
+      // Get the first line (oldest commit)
+      const firstLine = result.split('\n')[0].trim();
+      const timestamp = parseInt(firstLine);
+      if (!isNaN(timestamp) && timestamp > 0) {
+        const dateMs = timestamp * 1000; // Convert to milliseconds
+        const now = Date.now();
+        // Sanity check: date should not be in the future, and should be reasonable (not before 2000)
+        const minDate = new Date('2000-01-01').getTime();
+        if (dateMs <= now && dateMs >= minDate) {
+          return dateMs;
+        } else {
+          // Date validation failed - log for debugging (only in CI)
+          if (process.env.CI) {
+            console.warn(`Invalid date from git for ${relativePath}: ${dateMs} (now: ${now})`);
+          }
+        }
+      }
     }
   } catch (err) {
     // Git command failed (file not tracked, not a git repo, etc.)
+    // In CI, log the error for debugging
+    if (process.env.CI) {
+      console.warn(`Git log failed for ${relativePath}: ${err.message}`);
+    }
     // Fall back to file modification time
   }
   
@@ -96,6 +118,17 @@ fs.readdir(emotesFolder, (err, files) => {
       // Check if name has tags format - if so, parse them
       const parsed = parseTagsFromName(file);
       
+      // Validate existing date - if it's clearly wrong (future date or before 2000), recalculate it
+      let preservedDate = existing.addedDate;
+      if (preservedDate) {
+        const now = Date.now();
+        const minDate = new Date('2000-01-01').getTime();
+        // If date is in the future or unreasonably old, it's invalid - recalculate
+        if (preservedDate > now || preservedDate < minDate) {
+          preservedDate = null; // Will be recalculated below
+        }
+      }
+      
       // If filename has tags format and existing entry doesn't have tags (or has empty tags),
       // use parsed tags. Otherwise, preserve existing tags.
       if (parsed.tags.length > 0 && (!existing.tags || existing.tags.length === 0)) {
@@ -103,14 +136,14 @@ fs.readdir(emotesFolder, (err, files) => {
           name: parsed.name,
           file: file,
           tags: parsed.tags,
-          addedDate: existing.addedDate || getFileDate(filePath, relativePath)
+          addedDate: preservedDate || getFileDate(filePath, relativePath)
         };
       }
       
-      // Keep the existing entry but preserve the date (don't overwrite existing dates)
+      // Keep the existing entry and preserve the date if it's valid, otherwise recalculate
       return {
         ...existing,
-        addedDate: existing.addedDate || getFileDate(filePath, relativePath)
+        addedDate: preservedDate || getFileDate(filePath, relativePath)
       };
     } else {
       // New file - parse name and tags from filename
