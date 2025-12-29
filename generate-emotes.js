@@ -1,8 +1,38 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const emotesFolder = path.join(__dirname, 'emotes');
 const outputFile = path.join(__dirname, 'emotes.json');
+
+// Helper function to get file creation date from git (first commit)
+// Falls back to file modification time if git is not available
+function getFileDate(filePath, relativePath) {
+  try {
+    // Try to get the first commit date for this file using git log
+    // --follow: follow renames
+    // --format=%ct: output commit timestamp
+    // --diff-filter=A: only show commits that added the file
+    // -1: only the first (oldest) commit
+    const gitCommand = `git log --follow --format=%ct --diff-filter=A -1 -- "${relativePath}"`;
+    const timestamp = execSync(gitCommand, { 
+      encoding: 'utf8',
+      cwd: __dirname,
+      stdio: ['ignore', 'pipe', 'ignore']
+    }).trim();
+    
+    if (timestamp) {
+      return parseInt(timestamp) * 1000; // Convert to milliseconds
+    }
+  } catch (err) {
+    // Git command failed (file not tracked, not a git repo, etc.)
+    // Fall back to file modification time
+  }
+  
+  // Fallback to file modification time
+  const stats = fs.statSync(filePath);
+  return stats.mtime.getTime();
+}
 
 // Get all files from emotes folder
 fs.readdir(emotesFolder, (err, files) => {
@@ -58,7 +88,7 @@ fs.readdir(emotesFolder, (err, files) => {
   // Generate emotes array - keep existing entries if file still exists, add new ones
   const emotes = imageFiles.map(file => {
     const filePath = path.join(emotesFolder, file);
-    const stats = fs.statSync(filePath);
+    const relativePath = path.join('emotes', file).replace(/\\/g, '/'); // Use forward slashes for git
     
     // Check if this file already exists in the JSON
     if (existingEmotesMap.has(file)) {
@@ -73,14 +103,14 @@ fs.readdir(emotesFolder, (err, files) => {
           name: parsed.name,
           file: file,
           tags: parsed.tags,
-          addedDate: stats.mtime.getTime() // Add modification date
+          addedDate: existing.addedDate || getFileDate(filePath, relativePath)
         };
       }
       
-      // Keep the existing entry but update the date if not present
+      // Keep the existing entry but preserve the date (don't overwrite existing dates)
       return {
         ...existing,
-        addedDate: existing.addedDate || stats.mtime.getTime()
+        addedDate: existing.addedDate || getFileDate(filePath, relativePath)
       };
     } else {
       // New file - parse name and tags from filename
@@ -89,7 +119,7 @@ fs.readdir(emotesFolder, (err, files) => {
         name: parsed.name,
         file: file,
         tags: parsed.tags,
-        addedDate: stats.mtime.getTime() // Add modification date
+        addedDate: getFileDate(filePath, relativePath)
       };
     }
   });
