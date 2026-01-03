@@ -9,25 +9,25 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "websiteicon.png",
+      "src": "websiteicon-mobile.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "websiteicon.png",
+      "src": "websiteicon-mobile.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "websiteicon.png",
+      "src": "websiteicon-mobile.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "websiteicon.png",
+      "src": "websiteicon-mobile.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
