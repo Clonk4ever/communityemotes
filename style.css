@@ -582,16 +582,16 @@ h1 {
     gap: 5px;
   }
 
-  .top-right-social #youtubeBtn {
+  .top-right-social #paypalBtn {
     order: -1;
+  }
+
+  .top-right-social #youtubeBtn {
+    order: 0;
   }
 
   .top-right-social #twitchBtn {
     order: 1;
-  }
-
-  .top-right-social #paypalBtn {
-    order: 2;
   }
 
   .top-right-emote {
@@ -814,16 +814,16 @@ h1 {
     flex-direction: column;
   }
 
-  .top-right-social #youtubeBtn {
+  .top-right-social #paypalBtn {
     order: -1;
+  }
+
+  .top-right-social #youtubeBtn {
+    order: 0;
   }
 
   .top-right-social #twitchBtn {
     order: 1;
-  }
-
-  .top-right-social #paypalBtn {
-    order: 2;
   }
 
   .top-right-social .social-btn {
