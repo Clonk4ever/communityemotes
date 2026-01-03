@@ -292,6 +292,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Uncomment and add your YouTube URL:
     youtubeBtn.href = 'https://www.youtube.com/@Clonk_4_ever';
   }
+  const paypalBtn = document.getElementById('paypalBtn');
+  if (paypalBtn) {
+    // Add your PayPal donation URL:
+    paypalBtn.href = 'https://www.paypal.com/donate/?hosted_button_id=A4E86UPTFDEZ2';
+  }
 });
 
 // Search functionality

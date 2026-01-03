@@ -215,6 +215,15 @@ body {
   background: #cc0000;
 }
 
+#paypalBtn {
+  background: #ffffff;
+}
+
+#paypalBtn:hover {
+  background: #dfdfdf;
+}
+
+
 .top-right-social .social-icon {
   width: 30px;
   height: 30px;
@@ -581,6 +590,10 @@ h1 {
     order: 1;
   }
 
+  .top-right-social #paypalBtn {
+    order: 2;
+  }
+
   .top-right-emote {
     width: 35px;
     height: 35px;
@@ -807,6 +820,10 @@ h1 {
 
   .top-right-social #twitchBtn {
     order: 1;
+  }
+
+  .top-right-social #paypalBtn {
+    order: 2;
   }
 
   .top-right-social .social-btn {
