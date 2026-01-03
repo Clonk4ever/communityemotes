@@ -1,6 +1,6 @@
 {
   "name": "Community Emotes",
-  "short_name": "Community Emotes",
+  "short_name": "Emotes",
   "description": "Browse and download community emotes",
   "start_url": "/",
   "display": "standalone",
@@ -34,5 +34,6 @@
     }
   ]
 }
+
 
 
