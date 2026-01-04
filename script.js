@@ -212,15 +212,13 @@ function showSurpriseEmote() {
     <button class="surprise-download-btn" onclick="downloadEmote('${randomEmote.file}', '${randomEmote.name}')">Download</button>
   `;
 
-  // On mobile, move display to banner-wrapper and hide banner
-  if (window.innerWidth <= 900) {
-    const bannerWrapper = document.querySelector('.banner-wrapper');
-    if (bannerWrapper) {
-      bannerWrapper.appendChild(display);
-    }
-    if (banner) {
-      banner.style.visibility = 'hidden';
-    }
+  // Move display to banner-wrapper and hide banner (all widths)
+  const bannerWrapper = document.querySelector('.banner-wrapper');
+  if (bannerWrapper) {
+    bannerWrapper.appendChild(display);
+  }
+  if (banner) {
+    banner.style.visibility = 'hidden';
   }
   
   display.style.display = 'block';
@@ -234,14 +232,14 @@ function closeSurpriseEmote() {
   if (display) {
     display.style.display = 'none';
     
-    // On mobile, move display back to original container
-    if (window.innerWidth <= 900 && surpriseContainer) {
+    // Move display back to original container
+    if (surpriseContainer) {
       surpriseContainer.appendChild(display);
     }
   }
   
-  // Show banner again on mobile when surprise display is closed
-  if (window.innerWidth <= 900 && banner) {
+  // Show banner again when surprise display is closed
+  if (banner) {
     banner.style.visibility = 'visible';
   }
 }
@@ -296,6 +294,67 @@ document.addEventListener('DOMContentLoaded', () => {
   if (paypalBtn) {
     // Add your PayPal donation URL:
     paypalBtn.href = 'https://www.paypal.com/donate/?hosted_button_id=A4E86UPTFDEZ2';
+  }
+
+  // PWA Install Button
+  let deferredPrompt;
+  const appInstallBtn = document.getElementById('appInstallBtn');
+
+  // Show install button when app can be installed
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent the mini-infobar from appearing on mobile
+    e.preventDefault();
+    // Stash the event so it can be triggered later
+    deferredPrompt = e;
+    // Show the install button
+    if (appInstallBtn) {
+      appInstallBtn.style.display = 'flex';
+    }
+  });
+
+  // Handle install button click
+  if (appInstallBtn) {
+    appInstallBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) {
+        // If prompt is not available, try to open install dialog
+        // This works for some browsers
+        return;
+      }
+
+      // Show the install prompt
+      deferredPrompt.prompt();
+
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.userChoice;
+
+      if (outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+
+      // Clear the deferredPrompt
+      deferredPrompt = null;
+      
+      // Hide the install button after installation
+      appInstallBtn.style.display = 'none';
+    });
+  }
+
+  // Hide install button if app is already installed
+  window.addEventListener('appinstalled', () => {
+    console.log('PWA was installed');
+    if (appInstallBtn) {
+      appInstallBtn.style.display = 'none';
+    }
+    deferredPrompt = null;
+  });
+
+  // Check if app is already installed (hide button if so)
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    if (appInstallBtn) {
+      appInstallBtn.style.display = 'none';
+    }
   }
 });
 

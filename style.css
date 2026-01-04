@@ -215,6 +215,20 @@ body {
   background: #cc0000;
 }
 
+#appInstallBtn {
+  background: #538139;
+  border: none;
+  cursor: pointer;
+}
+
+#appInstallBtn:hover {
+  background: #44702f;
+}
+
+#appInstallBtn:active {
+  background: #365e26;
+}
+
 #paypalBtn {
   background: #ffffff;
 }
@@ -506,6 +520,52 @@ h1 {
   justify-content: center;
 }
 
+/* Extra-large screens */
+@media (min-width: 1920px) {
+  .gallery {
+    grid-template-columns: repeat(10, 140px);
+  }
+}
+
+/* Use banner slot for surprise display on desktop as well */
+@media (min-width: 901px) {
+  .banner-wrapper .surprise-emote-display {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 16px;
+    width: 60%;
+    max-width: 220px;
+    min-width: 180px;
+    min-height: 170px;
+    max-height: none;
+    overflow-y: visible;
+    z-index: 10000;
+    box-sizing: border-box;
+    margin-top: -100px;
+    margin-bottom: -35px;
+  }
+
+  .surprise-emote-display::after {
+    display: none;
+  }
+
+  body:has(.surprise-emote-display:not([style*="display: none"])) .banner {
+    visibility: hidden;
+  }
+}
+
+/* Make surprise content fill its box a bit more */
+#surpriseEmoteContent img {
+  max-width: 100%;
+  max-height: 100px;
+}
+
+#surpriseEmoteContent .surprise-download-btn {
+  width: auto; /* keep same sizing as other download buttons */
+}
+
 /* Mobile Responsive Styles */
 @media (max-width: 1200px) {
   .gallery {
@@ -580,6 +640,12 @@ h1 {
   .top-right-social {
     flex-direction: column;
     gap: 5px;
+    top: 0;
+    right: 0;
+  }
+
+  .top-right-social #appInstallBtn {
+    order: -2;
   }
 
   .top-right-social #paypalBtn {
@@ -617,7 +683,7 @@ h1 {
     gap: 8px;
     align-items: center;
     justify-content: center;
-    margin-top: 80px;
+    margin-top: 20px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -628,38 +694,43 @@ h1 {
   .search-right-buttons {
     display: flex;
     gap: 8px;
-    flex: 1;
+    flex: 0 0 auto;
     min-width: 0;
     justify-content: center;
     align-items: center;
-    max-width: 50%;
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
 
   .search-left-buttons .action-btn,
   .search-right-buttons .action-btn,
   .search-right-buttons .surprise-me-container {
-    flex: 1;
-    min-width: 0;
-    max-width: calc(50% - 4px);
+    flex: 0 0 auto;
+    min-width: 72px;
+    max-width: none;
+    width: auto;
   }
 
   .search-left-buttons .action-btn,
   .search-right-buttons .action-btn {
-    min-width: 80px;
-    width: 100%;
+    min-width: 72px;
+    width: auto;
   }
 
   #search {
+    flex: 1 0 100%;
+    min-width: 200px;
+    max-width: 100%;
+    order: 1;
     width: 100%;
-    order: 999;
   }
 
   .action-btn {
-    padding: 10px 8px;
+    padding: 10px 12px;
     font-size: 13px;
-    min-height: 40px;
-    min-width: 80px;
-    width: 100%;
+    min-height: 38px;
+    min-width: 72px;
+    width: auto;
   }
 
   .surprise-me-container {
@@ -678,16 +749,16 @@ h1 {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    padding: 20px;
-    width: 75%;
-    max-width: 280px;
-    min-width: 200px;
-    min-height: 180px;
+    padding: 25px;
+    width: 80%;
+    max-width: 300px;
+    min-width: 220px;
+    min-height: 200px;
     max-height: none;
     overflow-y: visible;
     z-index: 10000;
     box-sizing: border-box;
-    margin-top: -100px;
+    margin-top: -85px;
     margin-bottom: -55px;
   }
 
@@ -698,12 +769,17 @@ h1 {
   
   #surpriseEmoteContent {
     width: 100%;
-    gap: 10px;
+    gap: 20px;
+  }
+
+  #surpriseEmoteContent {
+    width: 100%;
+    gap: 16px;
   }
 
   #surpriseEmoteContent img {
     max-width: 100%;
-    max-height: 100px;
+    max-height: 110px;
     width: auto;
     height: auto;
   }
@@ -812,6 +888,12 @@ h1 {
 
   .top-right-social {
     flex-direction: column;
+    top: 0;
+    right: 0;
+  }
+
+  .top-right-social #appInstallBtn {
+    order: -2;
   }
 
   .top-right-social #paypalBtn {
@@ -841,10 +923,11 @@ h1 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 9px;
+    gap: 8px;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 40px; /* push action buttons below the vertical audio player */
+    margin-top: 30px; /* push action buttons below the compact vertical player */
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -855,38 +938,55 @@ h1 {
   .search-right-buttons {
     display: flex;
     gap: 8px;
-    flex: 1;
+    flex: 0 0 auto;
     min-width: 0;
     justify-content: center;
     align-items: center;
-    max-width: 50%;
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
 
   .search-left-buttons .action-btn,
   .search-right-buttons .action-btn,
   .search-right-buttons .surprise-me-container {
-    flex: 1;
-    min-width: 0;
-    max-width: calc(50% - 4px);
+    flex: 0 0 auto;
+    min-width: 72px;
+    max-width: none;
+    width: auto;
   }
 
   .search-left-buttons .action-btn,
   .search-right-buttons .action-btn {
-    min-width: 75px;
-    width: 100%;
+    min-width: 72px;
+    width: auto;
   }
 
   #search {
+    flex: 1 0 100%;
+    min-width: 200px;
+    max-width: 100%;
+    order: 1;
     width: 100%;
-    order: 999;
   }
 
   .action-btn {
-    padding: 10px 8px;
-    font-size: 12px;
+    padding: 10px 12px;
+    font-size: 13px;
     min-height: 38px;
-    min-width: 75px;
+    min-width: 72px;
+    width: auto;
+  }
+
+  #surpriseEmoteContent {
     width: 100%;
+    gap: 16px;
+  }
+
+  #surpriseEmoteContent img {
+    max-width: 100%;
+    max-height: 90px;
+    width: auto;
+    height: auto;
   }
 
   .surprise-me-container {
@@ -909,7 +1009,7 @@ h1 {
     width: 70%;
     max-width: 240px;
     min-width: 180px;
-    min-height: 160px;
+    min-height: 170px;
     max-height: none;
     overflow-y: visible;
     z-index: 10000;
@@ -965,6 +1065,69 @@ h1 {
   .emote::after {
     top: 50px;
     width: 50px;
+  }
+
+  /* Buttons above search bar on very small screens */
+  .search-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0 8px;
+  }
+
+  .search-left-buttons,
+  .search-right-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .search-left-buttons .action-btn,
+  .search-right-buttons .action-btn,
+  .search-right-buttons .surprise-me-container {
+    flex: 0 0 auto;
+    min-width: 60px;
+    width: auto;
+  }
+
+  #search {
+    flex: 1 0 100%;
+    min-width: 200px;
+    max-width: 100%;
+    order: 1;
+    width: 100%;
+  }
+
+  .action-btn {
+    padding: 10px 12px;
+    font-size: 13px;
+    min-height: 38px;
+    min-width: 72px;
+    width: auto;
+  }
+
+  #surpriseEmoteContent {
+    width: 100%;
+    gap: 16px;
+  }
+
+  #surpriseEmoteContent img {
+    max-width: 100%;
+    max-height: 90px;
+    width: auto;
+    height: auto;
   }
   
   .banner-wrapper .banner {
