@@ -545,6 +545,13 @@ h1 {
   }
 }
 
+/* Ultra-wide screens */
+@media (min-width: 2560px) {
+  .gallery {
+    grid-template-columns: repeat(14, 140px);
+  }
+}
+
 /* Use banner slot for surprise display on desktop as well */
 @media (min-width: 901px) {
   .banner-wrapper .surprise-emote-display {
@@ -1151,6 +1158,79 @@ h1 {
   .banner-wrapper .banner {
     margin-top: -80px !important;
     margin-bottom: -35px;
+  }
+}
+
+/* Intermediate small screens (351-420px) - reduce button sizes to fit in one line */
+@media (max-width: 420px) and (min-width: 351px) {
+  .action-btn {
+    padding: 9px 8px;
+    font-size: 12px;
+    min-height: 36px;
+    min-width: 58px;
+  }
+  
+  .surprise-btn {
+    padding: 9px 8px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+  
+  .search-left-buttons .action-btn,
+  .search-right-buttons .action-btn,
+  .search-right-buttons .surprise-me-container {
+    min-width: 58px;
+  }
+  
+  .search-container {
+    gap: 6px;
+  }
+  
+  .search-left-buttons,
+  .search-right-buttons {
+    gap: 6px;
+  }
+}
+
+/* Very small screens - keep buttons visible in one line */
+@media (max-width: 350px) {
+  .search-container {
+    gap: 6px;
+    padding: 0 4px;
+  }
+
+  .search-left-buttons,
+  .search-right-buttons {
+    gap: 6px;
+  }
+
+  .search-left-buttons .action-btn,
+  .search-right-buttons .action-btn,
+  .search-right-buttons .surprise-me-container {
+    min-width: 50px;
+  }
+
+  .action-btn {
+    padding: 8px 6px;
+    font-size: 11px;
+    min-height: 34px;
+    min-width: 50px;
+  }
+
+  .surprise-btn {
+    padding: 8px 6px;
+    font-size: 11px;
+    min-height: 34px;
+  }
+
+  .top-right-social .social-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .top-right-social .social-icon {
+    width: 26px;
+    height: 26px;
   }
 }
 
