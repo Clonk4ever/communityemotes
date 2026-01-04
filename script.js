@@ -315,9 +315,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Handle install button click
   if (appInstallBtn) {
     appInstallBtn.addEventListener('click', async () => {
+      const installedFlag = localStorage.getItem('appInstalled') === 'true';
+
+      // If already installed (standalone or remembered in browser), inform user
+      if (window.matchMedia('(display-mode: standalone)').matches || installedFlag) {
+        alert('You already have the app installed.');
+        return;
+      }
+
+      // If prompt not available, show manual instructions
       if (!deferredPrompt) {
-        // If prompt is not available, try to open install dialog
-        // This works for some browsers
+        alert('Install isn’t available right now. Try “Add to Home Screen” from your browser menu.');
         return;
       }
 
@@ -335,27 +343,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Clear the deferredPrompt
       deferredPrompt = null;
-      
-      // Hide the install button after installation
-      appInstallBtn.style.display = 'none';
     });
   }
 
-  // Hide install button if app is already installed
+  // Keep install button visible even after app is installed
   window.addEventListener('appinstalled', () => {
     console.log('PWA was installed');
-    if (appInstallBtn) {
-      appInstallBtn.style.display = 'none';
-    }
+    localStorage.setItem('appInstalled', 'true');
     deferredPrompt = null;
   });
 
-  // Check if app is already installed (hide button if so)
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    if (appInstallBtn) {
-      appInstallBtn.style.display = 'none';
-    }
-  }
+  // Keep button visible even if app is already installed
 });
 
 // Search functionality
