@@ -1,5 +1,21 @@
 [
   {
+    "name": "BEARRE4(STATIC)",
+    "file": "BEARRE4(WAVE)(STATIC).png",
+    "tags": [
+      "wave"
+    ],
+    "addedDate": 1767673333962
+  },
+  {
+    "name": "BEARRE4",
+    "file": "BEARRE4(WAVE).gif",
+    "tags": [
+      "wave"
+    ],
+    "addedDate": 1767673333962
+  },
+  {
     "name": "blackcatgreeneyes",
     "file": "blackcatgreeneyes(yes).gif",
     "tags": [
