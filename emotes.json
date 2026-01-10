@@ -1,5 +1,29 @@
 [
   {
+    "name": "FLASHBANG(NADE)(EXPLOSION",
+    "file": "FLASHBANG(GRANADE)(NADE)(EXPLOSION.gif",
+    "tags": [
+      "granade"
+    ],
+    "addedDate": 1768060976014
+  },
+  {
+    "name": "FLASHBANGV1(NADE)",
+    "file": "FLASHBANGV1(GRANADE)(NADE).png",
+    "tags": [
+      "granade"
+    ],
+    "addedDate": 1768060976014
+  },
+  {
+    "name": "FLASHBANGV2(NADE)",
+    "file": "FLASHBANGV2(GRANADE)(NADE).png",
+    "tags": [
+      "granade"
+    ],
+    "addedDate": 1768060976014
+  },
+  {
     "name": "facesmug(cool)112",
     "file": "facesmug(glasses)(cool)112.gif",
     "tags": [
