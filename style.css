@@ -509,6 +509,24 @@ h1 {
   margin-right: auto;
 }
 
+.emote-counter {
+  position: absolute;
+  top: -75px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #ffde00;
+  font-size: 16px;
+  padding: 8px 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.emote-counter span {
+  color: #538139;
+  font-weight: bold;
+}
+
 #search {
   padding: 12px;
   width: 300px;
@@ -598,12 +616,21 @@ h1 {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px) and (min-width: 651px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 650px) {
   .gallery {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
-  
+}
+
+@media (max-width: 900px) {
   .top-controls {
     height: 70px;
     margin-bottom: 15px;
@@ -816,6 +843,10 @@ h1 {
   .banner-wrapper .banner {
     margin-top: -80px !important;
     margin-bottom: -35px;
+  }
+  
+  .emote-counter {
+    top: -50px;
   }
 }
 

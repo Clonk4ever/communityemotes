@@ -5,9 +5,23 @@ let isRandomized = false;
 let isLatestMode = false;
 let isOldestMode = false;
 
-// Get emotes per page based on screen size
+// Get emotes per page based on screen size to fill all columns perfectly
 function getEmotesPerPage() {
-  return window.innerWidth <= 900 ? 57 : 256;
+  const width = window.innerWidth;
+  
+  if (width <= 650) {
+    return 114;  // 3 columns × 38 rows = 114 (perfect fit)
+  } else if (width <= 900) {
+    return 152;  // 4 columns × 38 rows = 152 (perfect fit)
+  } else if (width <= 1200) {
+    return 180;  // 6 columns × 30 rows = 180 (perfect fit)
+  } else if (width <= 1919) {
+    return 256;  // 8 columns × 32 rows = 256 (perfect fit)
+  } else if (width <= 2559) {
+    return 300;  // 10 columns × 30 rows = 300 (perfect fit)
+  } else {
+    return 420;  // 14 columns × 30 rows = 420 (perfect fit)
+  }
 }
 
 // Toggle for showing emote names (change to false to hide names)
@@ -28,6 +42,11 @@ fetch('emotes.json')
     }
     emotesData = data;
     originalEmotesData = [...data];
+    // Update emote counter
+    const counterElement = document.getElementById('emoteCount');
+    if (counterElement) {
+      counterElement.textContent = originalEmotesData.length;
+    }
     renderEmotes(data);
     setupPagination();
   })
