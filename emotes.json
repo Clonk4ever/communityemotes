@@ -1,5 +1,13 @@
 [
   {
+    "name": "peepohugbearstatic",
+    "file": "peepohugbear(hug)static.png",
+    "tags": [
+      "hug"
+    ],
+    "addedDate": 1768746078964
+  },
+  {
     "name": "peepohugbear",
     "file": "peepohugbear(hug).gif",
     "tags": [
