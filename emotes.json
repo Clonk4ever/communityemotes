@@ -1,5 +1,29 @@
 [
   {
+    "name": "redpowerpuff",
+    "file": "redpowerpuff(dance).gif",
+    "tags": [
+      "dance"
+    ],
+    "addedDate": 1769538827987
+  },
+  {
+    "name": "greenpowerpuff",
+    "file": "greenpowerpuff(dance).gif",
+    "tags": [
+      "dance"
+    ],
+    "addedDate": 1769538827966
+  },
+  {
+    "name": "bluepowerpuff",
+    "file": "bluepowerpuff(dance).gif",
+    "tags": [
+      "dance"
+    ],
+    "addedDate": 1769538827954
+  },
+  {
     "name": "peepobeedancing(bee)",
     "file": "peepobeedancing(dance)(bee).gif",
     "tags": [
