@@ -4,6 +4,86 @@ let currentPage = 1;
 let isRandomized = false;
 let isLatestMode = false;
 let isOldestMode = false;
+const TWITCH_CHANNEL = 'clonk_4_ever';
+const TWITCH_STATUS_REFRESH_MS = 120000;
+// TWITCH_LIVE_OVERRIDE = Null uses API status // False hides LIVE // True Shows LIVE
+const TWITCH_LIVE_OVERRIDE = null;
+let twitchStatusIntervalId = null;
+
+function setTwitchLiveState(state) {
+  const twitchBtn = document.getElementById('twitchBtn');
+  if (!twitchBtn) return;
+
+  twitchBtn.classList.remove('is-live', 'is-offline', 'is-unknown');
+  twitchBtn.classList.add(`is-${state}`);
+
+  if (state === 'live') {
+    twitchBtn.title = 'Twitch - Live now';
+    twitchBtn.setAttribute('aria-label', 'Twitch channel is live now');
+    return;
+  }
+
+  if (state === 'offline') {
+    twitchBtn.title = 'Twitch - Offline';
+    twitchBtn.setAttribute('aria-label', 'Twitch channel is currently offline');
+    return;
+  }
+
+  twitchBtn.title = 'Twitch - Status unavailable';
+  twitchBtn.setAttribute('aria-label', 'Twitch channel status is unavailable');
+}
+
+async function fetchTwitchLiveStatus(channel) {
+  const endpoint = `https://api.ivr.fi/v2/twitch/user?login=${encodeURIComponent(channel)}`;
+  const response = await fetch(endpoint, {
+    headers: { Accept: 'application/json' }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Twitch status request failed (${response.status})`);
+  }
+
+  const payload = await response.json();
+  const user = Array.isArray(payload) ? payload[0] : null;
+
+  if (!user) {
+    throw new Error('Twitch user payload was empty');
+  }
+  
+  if (typeof TWITCH_LIVE_OVERRIDE === 'boolean') {
+    return TWITCH_LIVE_OVERRIDE;
+  }
+
+  return Boolean(user.stream);
+}
+
+async function updateTwitchLiveStatus(channel) {
+  try {
+    const isLive = await fetchTwitchLiveStatus(channel);
+    setTwitchLiveState(isLive ? 'live' : 'offline');
+  } catch (error) {
+    console.warn('Unable to fetch Twitch live status:', error);
+    setTwitchLiveState('unknown');
+  }
+}
+
+function startTwitchStatusPolling(channel) {
+  updateTwitchLiveStatus(channel);
+
+  if (twitchStatusIntervalId) {
+    clearInterval(twitchStatusIntervalId);
+  }
+
+  twitchStatusIntervalId = setInterval(() => {
+    updateTwitchLiveStatus(channel);
+  }, TWITCH_STATUS_REFRESH_MS);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      updateTwitchLiveStatus(channel);
+    }
+  });
+}
 
 // Get emotes per page based on screen size to fill all columns perfectly
 function getEmotesPerPage() {
@@ -300,8 +380,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Twitch and YouTube buttons - Add your URLs here:
   const twitchBtn = document.getElementById('twitchBtn');
   if (twitchBtn) {
-    // Uncomment and add your Twitch URL:
-    twitchBtn.href = 'https://www.twitch.tv/clonk_4_ever';
+    twitchBtn.href = `https://www.twitch.tv/${TWITCH_CHANNEL}`;
+    setTwitchLiveState('unknown');
+    startTwitchStatusPolling(TWITCH_CHANNEL);
   }
 
   const youtubeBtn = document.getElementById('youtubeBtn');
@@ -371,6 +452,93 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('appInstalled', 'true');
     deferredPrompt = null;
   });
+
+  // Contact Form Submission
+  const contactForm = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+  const messageSendOk = document.getElementById('messageSendOk');
+  let messageSendOkTimer = null;
+  const messageInput = document.getElementById('contactMessage');
+
+  if (contactForm) {
+    if (messageInput) {
+      messageInput.addEventListener('input', () => {
+        messageInput.setCustomValidity('');
+      });
+    }
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const messageText = messageInput ? messageInput.value.trim() : '';
+      if (!messageText) {
+        if (formMessage) {
+          formMessage.textContent = 'Please enter a message before sending.';
+          formMessage.className = 'form-message form-message-error';
+          formMessage.style.display = 'block';
+        }
+        if (messageInput) {
+          messageInput.focus();
+        }
+        return;
+      }
+
+      if (messageInput) {
+        messageInput.setCustomValidity('');
+      }
+
+      const formData = new FormData(contactForm);
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton ? submitButton.textContent : 'Send';
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending...';
+      }
+
+      if (formMessage) {
+        formMessage.style.display = 'none';
+      }
+
+      try {
+        const response = await fetch('https://formspree.io/f/mojvnrkk', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Form submission failed');
+        }
+
+        if (messageSendOk) {
+          messageSendOk.style.display = 'block';
+          if (messageSendOkTimer) {
+            clearTimeout(messageSendOkTimer);
+          }
+          messageSendOkTimer = setTimeout(() => {
+            messageSendOk.style.display = 'none';
+            messageSendOkTimer = null;
+          }, 1900);
+        }
+
+        contactForm.reset();
+      } catch (error) {
+        if (formMessage) {
+          formMessage.textContent = 'Failed to send message. Please try again.';
+          formMessage.className = 'form-message form-message-error';
+          formMessage.style.display = 'block';
+        }
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      }
+    });
+  }
 
   // Keep button visible even if app is already installed
 });

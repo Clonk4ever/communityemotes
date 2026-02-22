@@ -75,8 +75,9 @@
     <button id="appInstallBtn" class="social-btn" title="Install App">
       <img src="appbutton.png" alt="Install App" class="social-icon">
     </button>
-    <a href="#" id="twitchBtn" class="social-btn" target="_blank" title="Twitch">
+    <a href="#" id="twitchBtn" class="social-btn" target="_blank" title="Twitch" rel="noopener noreferrer">
       <img src="twitchicon.png" alt="Twitch" class="social-icon">
+      <span id="twitchLiveBadge" class="twitch-live-badge" aria-hidden="true">LIVE</span>
     </a>
     <a href="#" id="youtubeBtn" class="social-btn" target="_blank" title="YouTube">
       <img src="youtubeicon.png" alt="YouTube" class="social-icon">
@@ -124,6 +125,38 @@
 </div>
 
 <div id="pagination" class="pagination"></div>
+
+<!-- Contact Form -->
+<div class="contact-form-container">
+  <h2>Couldn't find your emote? Send us your idea!</h2>
+  <form
+    action="https://formspree.io/f/mojvnrkk"
+    method="POST"
+    class="contact-form"
+    id="contactForm"
+  >
+    <label>
+      Your name (optional):
+      <input type="text" name="name" id="contactName" autocomplete="name">
+    </label>
+    <label>
+      Your message:
+      <textarea name="message" id="contactMessage" required></textarea>
+    </label>
+    <div id="formMessage" class="form-message" style="display: none;"></div>
+    <div class="contact-submit-row">
+      <button type="submit">Send</button>
+      <img
+        id="messageSendOk"
+        class="contact-send-ok"
+        src="messagesendok.gif"
+        alt="Message sent"
+        aria-hidden="true"
+        onerror="this.style.display='none';"
+      >
+    </div>
+  </form>
+</div>
 
 <script src="music-player.js"></script>
 <script src="script.js"></script>
