@@ -529,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
           messageSendOkTimer = setTimeout(() => {
             messageSendOk.style.display = 'none';
             messageSendOkTimer = null;
-          }, 1900);
+          }, 3800);
         }
 
         contactForm.reset();
