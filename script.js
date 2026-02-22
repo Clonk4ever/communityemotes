@@ -4,6 +4,7 @@ let currentPage = 1;
 let isRandomized = false;
 let isLatestMode = false;
 let isOldestMode = false;
+let lastViewportWidth = window.innerWidth;
 const TWITCH_CHANNEL = 'clonk_4_ever';
 const TWITCH_STATUS_REFRESH_MS = 120000;
 // TWITCH_LIVE_OVERRIDE = Null uses API status // False hides LIVE // True Shows LIVE
@@ -545,9 +546,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isMobileViewport) {
-          requestAnimationFrame(() => {
+          const restoreScrollPosition = () => {
             window.scrollTo(0, preservedScrollY);
-          });
+          };
+
+          restoreScrollPosition();
+          requestAnimationFrame(restoreScrollPosition);
+          setTimeout(restoreScrollPosition, 120);
+          setTimeout(restoreScrollPosition, 280);
         }
       }
     });
@@ -591,6 +597,12 @@ if (searchInput) {
 
 // Handle window resize to recalculate pagination when switching between mobile/desktop
 window.addEventListener('resize', () => {
+  const widthChanged = Math.abs(window.innerWidth - lastViewportWidth) > 1;
+  if (!widthChanged) {
+    return;
+  }
+
+  lastViewportWidth = window.innerWidth;
   const emotesPerPage = getEmotesPerPage();
   const totalPages = Math.ceil(emotesData.length / emotesPerPage);
   if (currentPage > totalPages && totalPages > 0) {
