@@ -470,6 +470,9 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
+      const isMobileViewport = window.matchMedia('(max-width: 900px), (pointer: coarse)').matches;
+      const preservedScrollY = window.scrollY;
+
       const messageText = messageInput ? messageInput.value.trim() : '';
       if (!messageText) {
         if (formMessage) {
@@ -485,6 +488,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (messageInput) {
         messageInput.setCustomValidity('');
+      }
+
+      if (isMobileViewport && document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
       }
 
       const formData = new FormData(contactForm);
@@ -535,6 +542,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (submitButton) {
           submitButton.disabled = false;
           submitButton.textContent = originalButtonText;
+        }
+
+        if (isMobileViewport) {
+          requestAnimationFrame(() => {
+            window.scrollTo(0, preservedScrollY);
+          });
         }
       }
     });
