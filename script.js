@@ -7,6 +7,7 @@ let isOldestMode = false;
 let lastViewportWidth = window.innerWidth;
 const TWITCH_CHANNEL = 'clonk_4_ever';
 const TWITCH_STATUS_REFRESH_MS = 120000;
+const CONTACT_API_ENDPOINT = '/api/contact';
 // TWITCH_LIVE_OVERRIDE = Null uses API status // False hides LIVE // True Shows LIVE
 const TWITCH_LIVE_OVERRIDE = null;
 let twitchStatusIntervalId = null;
@@ -509,7 +510,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        const response = await fetch('https://formspree.io/f/mojvnrkk', {
+        const response = await fetch(CONTACT_API_ENDPOINT, {
           method: 'POST',
           body: formData,
           headers: {
