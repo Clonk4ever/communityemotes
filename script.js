@@ -519,7 +519,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (!response.ok) {
-          throw new Error('Form submission failed');
+          let errorMessage = 'Form submission failed';
+          try {
+            const errorPayload = await response.json();
+            if (errorPayload && typeof errorPayload.error === 'string' && errorPayload.error.trim()) {
+              errorMessage = errorPayload.error.trim();
+            }
+          } catch (_error) {
+            // Keep default message when response body is not JSON.
+          }
+          throw new Error(errorMessage);
         }
 
         if (messageSendOk) {
@@ -536,7 +545,9 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.reset();
       } catch (error) {
         if (formMessage) {
-          formMessage.textContent = 'Failed to send message. Please try again.';
+          const fallbackMessage = 'Failed to send message. Please try again.';
+          formMessage.textContent =
+            error instanceof Error && error.message ? error.message : fallbackMessage;
           formMessage.className = 'form-message form-message-error';
           formMessage.style.display = 'block';
         }
