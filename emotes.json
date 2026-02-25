@@ -1,5 +1,21 @@
 [
   {
+    "name": "peepofishingboatanimated",
+    "file": "peepofishingboat(fish)animated.gif",
+    "tags": [
+      "fish"
+    ],
+    "addedDate": 1771988532700
+  },
+  {
+    "name": "peepofishingboatstatic.gif",
+    "file": "peepofishingboat(fish)static.gif.png",
+    "tags": [
+      "fish"
+    ],
+    "addedDate": 1771988532700
+  },
+  {
     "name": "peepopicture(camera)v3",
     "file": "peepopicture(shots)(camera)v3.gif",
     "tags": [
