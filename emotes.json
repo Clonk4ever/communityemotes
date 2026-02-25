@@ -1,5 +1,29 @@
 [
   {
+    "name": "letsgopatrick",
+    "file": "letsgopatrick(cheer).png",
+    "tags": [
+      "cheer"
+    ],
+    "addedDate": 1772031673325
+  },
+  {
+    "name": "letsgopatrick(animated)",
+    "file": "letsgopatrick(cheer)(animated).gif",
+    "tags": [
+      "cheer"
+    ],
+    "addedDate": 1772031673324
+  },
+  {
+    "name": "letsgopatrick(animated)v2",
+    "file": "letsgopatrick(cheer)(animated)v2.gif",
+    "tags": [
+      "cheer"
+    ],
+    "addedDate": 1772031673324
+  },
+  {
     "name": "peepohoneyhug112",
     "file": "peepohoneyhug112(bee).png",
     "tags": [
