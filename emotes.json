@@ -1,5 +1,35 @@
 [
   {
+    "name": "peepopopcornanimatedopacity",
+    "file": "peepopopcorn(watching)animatedopacity.gif",
+    "tags": [
+      "watching"
+    ],
+    "addedDate": 1772052209566
+  },
+  {
+    "name": "peepopopcornstatic",
+    "file": "peepopopcorn(watching)static.png",
+    "tags": [
+      "watching"
+    ],
+    "addedDate": 1772052209566
+  },
+  {
+    "name": "peepopopcornanimatedcolors",
+    "file": "peepopopcorn(watching)animatedcolors.gif",
+    "tags": [
+      "watching"
+    ],
+    "addedDate": 1772052209565
+  },
+  {
+    "name": "peepopcorn112",
+    "file": "peepopcorn112.png",
+    "tags": [],
+    "addedDate": 1772052209563
+  },
+  {
     "name": "peepobeecringe112",
     "file": "peepobeecringe112(cringe).png",
     "tags": [
