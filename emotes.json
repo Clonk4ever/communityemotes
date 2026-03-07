@@ -1,5 +1,21 @@
 [
   {
+    "name": "peepohugbeansanimated",
+    "file": "peepohugbeans(hug)animated.gif",
+    "tags": [
+      "hug"
+    ],
+    "addedDate": 1772910456157
+  },
+  {
+    "name": "peepohugbeans",
+    "file": "peepohugbeans(hug).png",
+    "tags": [
+      "hug"
+    ],
+    "addedDate": 1772910456156
+  },
+  {
     "name": "PEEPOHUGBEANSSTATIC",
     "file": "PEEPOHUGBEANS(HUG)STATIC.png",
     "tags": [
