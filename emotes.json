@@ -1,5 +1,13 @@
 [
   {
+    "name": "inventoryitemsV2",
+    "file": "inventory(dayz)itemsV2.gif",
+    "tags": [
+      "dayz"
+    ],
+    "addedDate": 1772996731396
+  },
+  {
     "name": "inventoryitems",
     "file": "inventory(dayz)items.gif",
     "tags": [
