@@ -1,5 +1,21 @@
 [
   {
+    "name": "friendlylowhealth(dayz)V2",
+    "file": "friendlylowhealth(redhealth)(dayz)V2.gif",
+    "tags": [
+      "redhealth"
+    ],
+    "addedDate": 1773588336616
+  },
+  {
+    "name": "friendlylowhealth(dayz)V3",
+    "file": "friendlylowhealth(redhealth)(dayz)V3.gif",
+    "tags": [
+      "redhealth"
+    ],
+    "addedDate": 1773588336616
+  },
+  {
     "name": "friendlylowhealth(dayz)",
     "file": "friendlylowhealth(redhealth)(dayz).png",
     "tags": [
