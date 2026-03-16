@@ -1,5 +1,21 @@
 [
   {
+    "name": "SOSflashlight(help)",
+    "file": "SOSflashlight(light)(help).gif",
+    "tags": [
+      "light"
+    ],
+    "addedDate": 1773676664871
+  },
+  {
+    "name": "HELPflashlight(help)",
+    "file": "HELPflashlight(light)(help).gif",
+    "tags": [
+      "light"
+    ],
+    "addedDate": 1773676664866
+  },
+  {
     "name": "peepocopslight(police)",
     "file": "peepocopslight(mad)(police).gif",
     "tags": [
