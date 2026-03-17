@@ -1,5 +1,21 @@
 [
   {
+    "name": "peepolurkrock",
+    "file": "peepolurkrock(lurk).png",
+    "tags": [
+      "lurk"
+    ],
+    "addedDate": 1773709247175
+  },
+  {
+    "name": "peepocostarica",
+    "file": "peepocostarica(flags).gif",
+    "tags": [
+      "flags"
+    ],
+    "addedDate": 1773709247161
+  },
+  {
     "name": "SOSflashlight(help)",
     "file": "SOSflashlight(light)(help).gif",
     "tags": [
