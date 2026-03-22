@@ -1,5 +1,21 @@
 [
   {
+    "name": "letsgodonuts",
+    "file": "letsgodonuts(cheer).png",
+    "tags": [
+      "cheer"
+    ],
+    "addedDate": 1774146849264
+  },
+  {
+    "name": "letsgodonutsanimated",
+    "file": "letsgodonuts(cheer)animated.gif",
+    "tags": [
+      "cheer"
+    ],
+    "addedDate": 1774146849264
+  },
+  {
     "name": "LOADING",
     "file": "LOADING(FATTY).gif",
     "tags": [
