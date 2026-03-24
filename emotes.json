@@ -1,5 +1,13 @@
 [
   {
+    "name": "puzzletime",
+    "file": "puzzletime(rubik's cube).png",
+    "tags": [
+      "rubik's cube"
+    ],
+    "addedDate": 1774317612804
+  },
+  {
     "name": "fortunecookiev2",
     "file": "fortunecookie(don)v2.gif",
     "tags": [
