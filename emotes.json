@@ -1,5 +1,13 @@
 [
   {
+    "name": "frogGUITAR",
+    "file": "frogGUITAR(music).png",
+    "tags": [
+      "music"
+    ],
+    "addedDate": 1775068523960
+  },
+  {
     "name": "peepoplayinguitar(art)",
     "file": "peepoplayinguitar(music)(art).gif",
     "tags": [
