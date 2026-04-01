@@ -1510,6 +1510,13 @@ h1 {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
 }
 
+.contact-message-counter {
+  margin-top: 4px;
+  text-align: right;
+  color: #adadb8;
+  font-size: 12px;
+}
+
 .contact-form button[type="submit"] {
   background: #538139;
   color: white;

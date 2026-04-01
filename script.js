@@ -462,12 +462,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageSendOk = document.getElementById('messageSendOk');
   let messageSendOkTimer = null;
   const messageInput = document.getElementById('contactMessage');
+  const messageCounter = document.getElementById('contactMessageCounter');
+
+  const updateMessageCounter = () => {
+    if (!messageInput || !messageCounter) return;
+    messageCounter.textContent = `${messageInput.value.length}/${CONTACT_MESSAGE_MAX_LENGTH}`;
+  };
 
   if (contactForm) {
     if (messageInput) {
       messageInput.addEventListener('input', () => {
         messageInput.setCustomValidity('');
+        updateMessageCounter();
       });
+      updateMessageCounter();
     }
 
     contactForm.addEventListener('submit', async (e) => {
@@ -559,6 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         contactForm.reset();
+        updateMessageCounter();
       } catch (error) {
         if (formMessage) {
           const fallbackMessage = 'Failed to send message. Please try again.';
