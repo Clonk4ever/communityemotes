@@ -8,6 +8,7 @@ let lastViewportWidth = window.innerWidth;
 const TWITCH_CHANNEL = 'clonk_4_ever';
 const TWITCH_STATUS_REFRESH_MS = 120000;
 const CONTACT_API_ENDPOINT = '/api/contact';
+const CONTACT_MESSAGE_MAX_LENGTH = 200;
 // TWITCH_LIVE_OVERRIDE = Null uses API status // False hides LIVE // True Shows LIVE
 const TWITCH_LIVE_OVERRIDE = null;
 let twitchStatusIntervalId = null;
@@ -483,6 +484,21 @@ document.addEventListener('DOMContentLoaded', () => {
           formMessage.style.display = 'block';
         }
         if (messageInput) {
+          messageInput.focus();
+        }
+        return;
+      }
+
+      if (messageText.length > CONTACT_MESSAGE_MAX_LENGTH) {
+        const tooLongMessage = `Message must be ${CONTACT_MESSAGE_MAX_LENGTH} characters or fewer.`;
+        if (formMessage) {
+          formMessage.textContent = tooLongMessage;
+          formMessage.className = 'form-message form-message-error';
+          formMessage.style.display = 'block';
+        }
+        if (messageInput) {
+          messageInput.setCustomValidity(tooLongMessage);
+          messageInput.reportValidity();
           messageInput.focus();
         }
         return;
