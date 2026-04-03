@@ -1,5 +1,21 @@
 [
   {
+    "name": "Soldier",
+    "file": "Soldier(salute).png",
+    "tags": [
+      "salute"
+    ],
+    "addedDate": 1775220476095
+  },
+  {
+    "name": "TACTICALNAP(SOLDIER)",
+    "file": "TACTICALNAP(SLEEP)(SOLDIER).png",
+    "tags": [
+      "sleep"
+    ],
+    "addedDate": 1775220476095
+  },
+  {
     "name": "frogGUITAR",
     "file": "frogGUITAR(music).png",
     "tags": [
