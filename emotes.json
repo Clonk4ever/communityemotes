@@ -1,5 +1,13 @@
 [
   {
+    "name": "frogjuice",
+    "file": "frogjuice(drinking).png",
+    "tags": [
+      "drinking"
+    ],
+    "addedDate": 1775315160119
+  },
+  {
     "name": "frogblinking",
     "file": "frogblinking(blink).gif",
     "tags": [
