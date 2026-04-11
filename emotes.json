@@ -1,5 +1,13 @@
 [
   {
+    "name": "racconhamburguer",
+    "file": "racconhamburguer(food).png",
+    "tags": [
+      "food"
+    ],
+    "addedDate": 1775935051198
+  },
+  {
     "name": "froghappybirthday",
     "file": "froghappybirthday(cake).gif",
     "tags": [
