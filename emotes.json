@@ -1,5 +1,13 @@
 [
   {
+    "name": "catcereal",
+    "file": "catcereal(eating).gif",
+    "tags": [
+      "eating"
+    ],
+    "addedDate": 1776049127176
+  },
+  {
     "name": "sheepnoted",
     "file": "sheepnoted(takingnotes).png",
     "tags": [
