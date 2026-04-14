@@ -1,5 +1,21 @@
 [
   {
+    "name": "peeposleepinganimated",
+    "file": "peeposleeping(tired)animated.gif",
+    "tags": [
+      "tired"
+    ],
+    "addedDate": 1776189729688
+  },
+  {
+    "name": "peeposleeping",
+    "file": "peeposleeping(tired).png",
+    "tags": [
+      "tired"
+    ],
+    "addedDate": 1776189729687
+  },
+  {
     "name": "peepohidingbush(scared)",
     "file": "peepohidingbush(lurk)(scared).gif",
     "tags": [
