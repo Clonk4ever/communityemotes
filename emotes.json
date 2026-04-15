@@ -1,5 +1,13 @@
 [
   {
+    "name": "tempicon",
+    "file": "tempicon(freezing).gif",
+    "tags": [
+      "freezing"
+    ],
+    "addedDate": 1776280665645
+  },
+  {
     "name": "thirstyicon",
     "file": "thirstyicon(water).gif",
     "tags": [
