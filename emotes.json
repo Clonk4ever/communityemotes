@@ -1,5 +1,43 @@
 [
   {
+    "name": "thirstyicon",
+    "file": "thirstyicon(water).gif",
+    "tags": [
+      "water"
+    ],
+    "addedDate": 1776279196224
+  },
+  {
+    "name": "flashinghp",
+    "file": "flashinghp(dying).gif",
+    "tags": [
+      "dying"
+    ],
+    "addedDate": 1776279196164
+  },
+  {
+    "name": "chficon(clean)",
+    "file": "chficon(wash)(clean).gif",
+    "tags": [
+      "wash"
+    ],
+    "addedDate": 1776279196153
+  },
+  {
+    "name": "bloodicon(fatty)",
+    "file": "bloodicon(cut)(fatty).gif",
+    "tags": [
+      "cut"
+    ],
+    "addedDate": 1776279196151
+  },
+  {
+    "name": "appleicon(starving",
+    "file": "appleicon(starving.gif",
+    "tags": [],
+    "addedDate": 1776279196148
+  },
+  {
     "name": "peepojumpingcontainer",
     "file": "peepojumpingcontainer.gif",
     "tags": [],
