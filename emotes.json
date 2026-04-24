@@ -1,5 +1,21 @@
 [
   {
+    "name": "stitchhello(ola)(howdy)",
+    "file": "stitchhello(hey)(ola)(howdy).png",
+    "tags": [
+      "hey"
+    ],
+    "addedDate": 1777059801732
+  },
+  {
+    "name": "stitchhug",
+    "file": "stitchhug(happy).png",
+    "tags": [
+      "happy"
+    ],
+    "addedDate": 1777059801732
+  },
+  {
     "name": "peepotrainstatic",
     "file": "peepotrain(driving)static.png",
     "tags": [
