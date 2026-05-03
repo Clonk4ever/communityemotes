@@ -1,5 +1,21 @@
 [
   {
+    "name": "iakfence",
+    "file": "iakfence(spooky_moose).png",
+    "tags": [
+      "spooky_moose"
+    ],
+    "addedDate": 1777838572482
+  },
+  {
+    "name": "iakfenceanimated",
+    "file": "iakfence(spooky_moose)animated.gif",
+    "tags": [
+      "spooky_moose"
+    ],
+    "addedDate": 1777838572482
+  },
+  {
     "name": "bearwavingbehindtree",
     "file": "bearwavingbehindtree(fatty).gif",
     "tags": [
