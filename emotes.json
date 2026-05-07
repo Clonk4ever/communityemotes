@@ -1,5 +1,13 @@
 [
   {
+    "name": "explosion",
+    "file": "explosion(boom).gif",
+    "tags": [
+      "boom"
+    ],
+    "addedDate": 1778173251839
+  },
+  {
     "name": "raniningmoneycoinsv2",
     "file": "raniningmoneycoins(rich)v2.gif",
     "tags": [
