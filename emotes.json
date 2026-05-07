@@ -1,5 +1,27 @@
 [
   {
+    "name": "peepobagofmoney",
+    "file": "peepobagofmoney.png",
+    "tags": [],
+    "addedDate": 1778175385841
+  },
+  {
+    "name": "bringthemoney",
+    "file": "bringthemoney(peepohand).gif",
+    "tags": [
+      "peepohand"
+    ],
+    "addedDate": 1778175385802
+  },
+  {
+    "name": "bagofmoney",
+    "file": "bagofmoney(rich).png",
+    "tags": [
+      "rich"
+    ],
+    "addedDate": 1778175385800
+  },
+  {
     "name": "explosion",
     "file": "explosion(boom).gif",
     "tags": [
