@@ -1,5 +1,13 @@
 [
   {
+    "name": "toiletpaper",
+    "file": "toiletpaper(clean).png",
+    "tags": [
+      "clean"
+    ],
+    "addedDate": 1778942941392
+  },
+  {
     "name": "toiletpaperroll",
     "file": "toiletpaperroll(fatfamily).gif",
     "tags": [
