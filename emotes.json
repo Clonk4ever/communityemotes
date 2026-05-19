@@ -1,5 +1,21 @@
 [
   {
+    "name": "dogdancing",
+    "file": "dogdancing(nolights).gif",
+    "tags": [
+      "nolights"
+    ],
+    "addedDate": 1779216960289
+  },
+  {
+    "name": "dogdancing",
+    "file": "dogdancing(party).gif",
+    "tags": [
+      "party"
+    ],
+    "addedDate": 1779216960289
+  },
+  {
     "name": "dogsmile",
     "file": "dogsmile.png",
     "tags": [],
