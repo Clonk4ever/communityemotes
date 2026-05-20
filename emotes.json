@@ -1,5 +1,21 @@
 [
   {
+    "name": "lovemodanimatedrotate",
+    "file": "lovemod(heart)animatedrotate.gif",
+    "tags": [
+      "heart"
+    ],
+    "addedDate": 1779300739832
+  },
+  {
+    "name": "lovemodpng",
+    "file": "lovemod(heart)png.png",
+    "tags": [
+      "heart"
+    ],
+    "addedDate": 1779300739832
+  },
+  {
     "name": "dogdancecolors",
     "file": "dogdancecolors(party).gif",
     "tags": [
