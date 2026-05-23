@@ -1,5 +1,21 @@
 [
   {
+    "name": "lighterdance",
+    "file": "lighterdance(fire).gif",
+    "tags": [
+      "fire"
+    ],
+    "addedDate": 1779509018900
+  },
+  {
+    "name": "lighterpng",
+    "file": "lighter(fire)png.png",
+    "tags": [
+      "fire"
+    ],
+    "addedDate": 1779509018899
+  },
+  {
     "name": "lighter(fire)",
     "file": "lighter(opening)(fire).gif",
     "tags": [
