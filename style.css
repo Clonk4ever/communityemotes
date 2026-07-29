@@ -1446,6 +1446,7 @@ h1 {
   margin-top: 0;
 }
 
+/* Hide bot trap fields without affecting layout */
 /* CONTACT FORM */
 .contact-form-container {
   max-width: 600px;
