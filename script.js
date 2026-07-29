@@ -9,6 +9,7 @@ const TWITCH_CHANNEL = 'clonk_4_ever';
 const TWITCH_STATUS_REFRESH_MS = 120000;
 const CONTACT_API_ENDPOINT = '/api/contact';
 const CONTACT_MESSAGE_MAX_LENGTH = 200;
+const CONTACT_FORM_ENABLED = false;
 // TWITCH_LIVE_OVERRIDE = Null uses API status // False hides LIVE // True Shows LIVE
 const TWITCH_LIVE_OVERRIDE = null;
 let twitchStatusIntervalId = null;
@@ -463,6 +464,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let messageSendOkTimer = null;
   const messageInput = document.getElementById('contactMessage');
   const messageCounter = document.getElementById('contactMessageCounter');
+  const contactFormContainer = document.querySelector('.contact-form-container');
+
+  if (!CONTACT_FORM_ENABLED) {
+    if (contactFormContainer) {
+      contactFormContainer.style.display = 'none';
+    }
+    return;
+  }
 
   const updateMessageCounter = () => {
     if (!messageInput || !messageCounter) return;
