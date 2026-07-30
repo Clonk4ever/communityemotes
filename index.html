@@ -126,39 +126,6 @@
 
 <div id="pagination" class="pagination"></div>
 
-<!-- Contact Form -->
-<div class="contact-form-container">
-  <h2>Couldn't find your emote? Send us your idea!</h2>
-  <form
-    action="/api/contact"
-    method="POST"
-    class="contact-form"
-    id="contactForm"
-  >
-    <label>
-      Your name (optional):
-      <input type="text" name="name" id="contactName" autocomplete="name">
-    </label>
-    <label>
-      Your message:
-      <textarea name="message" id="contactMessage" required maxlength="200"></textarea>
-      <div id="contactMessageCounter" class="contact-message-counter" aria-live="polite">0/200</div>
-    </label>
-    <div id="formMessage" class="form-message" style="display: none;"></div>
-    <div class="contact-submit-row">
-      <button type="submit">Send</button>
-      <img
-        id="messageSendOk"
-        class="contact-send-ok"
-        src="messagesendok.gif"
-        alt="Message sent"
-        aria-hidden="true"
-        onerror="this.style.display='none';"
-      >
-    </div>
-  </form>
-</div>
-
 <script src="music-player.js"></script>
 <script src="script.js"></script>
 </body>
